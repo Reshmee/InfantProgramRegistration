@@ -1,0 +1,31 @@
+<template name="layout">
+<center>
+        <h1 style="color: #ffffff; background-color:#009688;  font-family: fontawesome;">Session Allocation for Facilitators</h1>
+</center>        
+       <br>
+  <body>
+    <div class="container">
+      <div class="row">
+        {{> navigation}}
+      </div>
+      <div class="row">
+        {{> yield}}
+      </div>
+    </div>
+  </body>
+</template>
+
+<template name="navigation">
+  <nav>
+    <div class="nav-wrapper teal">
+      <a href="#" class="brand-logo">
+        <img src="./baby.png"/>
+      </a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li>{{> loginButtons}}</li>
+        <li><a href="/allocations/main" >Home</a></li>
+        <li><a href="/allocations/emptySessions_1">Empty Sessions</a></li>
+      </ul>
+    </div>
+  </nav>
+</template>

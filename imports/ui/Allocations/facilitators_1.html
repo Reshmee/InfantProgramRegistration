@@ -1,0 +1,40 @@
+<template name="facilitators_1">
+  <div class="row">
+    <div class="col s12">
+      <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add new Facilitator</a>
+    </div>
+    {{#each facilitators_1}}
+      {{> facilitator_1}}
+    {{/each}}
+  </div>
+  <div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Add new Facilitator</h4>
+      {{> quickForm collection="Facilitators_1" id="insertFacilitator_1Form" type="method" meteormethod="insertFacilitator_1"}}
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">
+        Close
+      </a>
+    </div>
+  </div>
+</template>
+
+<template name="facilitator_1">
+  <div class="col s6">
+    <div class="card">
+      <div class="card-image">
+        <img src="https://images.unsplash.com/photo-1529952773346-0c86dca12264?ixlib=rb-0.3.5&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;s=b81cc2447e4fc8fbb638d0a8925a0eb7&amp;auto=format&amp;fit=crop&amp;w=3000&amp;q=80 3000w">
+        <span class="card-title">{{firstName}} {{lastName}}</span>
+      </div>
+      <div class="card-content">
+        <p>Facilitator# {{username}}</p>
+        <p>{{city}}, {{state}}</p>
+      </div>
+      <div class="card-action">
+        <a href="#">Seesion Date: {{formatDate previousSession}}</a>
+        <a href="#">No. of Sessions: {{numberOfSessions}}</a>
+      </div>
+    </div>
+  </div>
+</template>

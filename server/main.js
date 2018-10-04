@@ -2,112 +2,87 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import '../imports/ui/Others/routes.js';
 import '../imports/api/task.js';
+import './methods';
+import _ from 'lodash';
+import faker from 'faker';
+import { Facilitators_1 } from '../imports/api/facilitators_1';
+import { Sessions_1 } from '../imports/api/sessions_1';
+ 
+
 
 Meteor.startup(() => {
-//   Meteor.methods({
-//     'saveFile': function(buffer){
-//         Files.insert({data:buffer});        
-//     },   
-    
-// });  
+  // code to run on server at startup
+  Meteor.publish('sessions_1.vacantSessions_1', () => {
+    return Sessions_1.find({
+      available: true,
+    });
+  });
+
+  Meteor.publish('sessions_1.allSessions_1', () => {
+    return Sessions_1.find();
+  });
+
+  Meteor.publish('facilitators_1.allFacilitators_1', () => {
+    return Facilitators_1.find();
+  });
+
+  const numberFacilitators_1 = Facilitators_1.find({}).count();
+  console.log(numberFacilitators_1);
+  if (!numberFacilitators_1) {
+    _.times(20, () => {
+      const firstName = faker.name.firstName();
+      const lastName = faker.name.lastName();
+      const username = faker.internet.userName();
+      const street = faker.address.streetAddress();
+      const city = faker.address.city();
+      const state = faker.address.state();
+      const postcode = faker.address.zipCode();
+      const previousSession = faker.date.past();
+      const numberOfSessions = faker.random.number(40);
+      const preferences = faker.random.words();
+
+      Meteor.call('insertFacilitator_1', {
+        firstName,
+        lastName,
+        username,
+        street,
+        city,
+        state,
+        postcode,
+        previousSession,
+        numberOfSessions,
+        preferences,
+        createdAt: new Date(),
+      });
+    });
+  }
+
+  const numberSessions_1 = Sessions_1.find({}).count();
+  console.log(numberSessions_1);
+  if (!numberSessions_1) {
+    _.times(25, (sessionNumber) => {
+      sessionNumber++;
+      const sessionDate = faker.date.past();
+      const sessionTime = faker.random.words();
+
+      Meteor.call('insertSession_1', {
+        sessionNumber,
+        sessionDate,
+        sessionTime,
+        tenantID: 'No one',
+        available: true,
+        needRefreshment: true,
+        createdAt: new Date(),
+      });
+
+      return sessionNumber;
+    });
+  }
 });
-// import '../client/main.js';
 
-// import { Tasks, user,parent,request,group, Sessions, lga, admin, facilitator } from '../imports/api/task.js';
-// if (Meteor.isServer) {
-//     Meteor.startup(function () {
-//         // code to run on server at startup
-//         // Simple if statement to check collection
-//         //create user collection if not exist in db
-//         if(user.find({}).fetch({})=="")
-//         user.insert({
-//             Id:"User001",
-//             Password: "Pass",
-//             fname: "",
-//             lname: "",
-//             address: "",
-//             pcode: "",
-//             phone: "",
-//             email: "",
-//             photo: "",
-//             role: "",
-//             status: "",
-//             lastPassUpdate:""
-//         });
-        
-//         //create parent collection if not exist in db
-//         if(parent.find({}).fetch({})=="")
-//         parent.insert({
-//             Id:"PA001",
-//             ChildAge:"3",
-//             GroupId:"G001",
-//             S1:"13-12-2018",
-//             S2:"09-03-2019",
-//             S3:"05-06-2019",
-//             S4:"",
-//             S5:"",
-//             S6:"",
-//             Reminders:"Yes",
-//             Reg_Sessions:"",
-//             Attended_Sessions:"",
-//             LgaId:""
-//         });
-//         //create request collection if not exist in db
-//         if(request.find({}).fetch({})=="")
-//         request.insert({
-//             From:"PA001",
-//             Type:"Change of Session",
-//             DateFrom:"13-12-2018",
-//             DateTo:"13-03-2018",
-//             Remarks:"Request for Change"
-//         });
-//         //create lga collection if not exist in db
-//         if(lga.find({}).fetch({})=="")
-//         lga.insert({
-//             LgaId : "LG001" ,
-//             Address : "" ,
-//             Pcode : "3056" ,
-//             Phone : "" ,
-//             Email : "" ,
-//             Sess_Mode : "4 Session" 
-//         });
-//         //create group collection if not exist in db
-//         if(group.find({}).fetch({})=="")
-//         group.insert({
-//             GroupId	: " G001",
-//             Name:"Group One",
-//             TotalSlots	:"20",
-//             FreeSlots	:"",
-//             Sess_Mode	:"4 Session"    
-//         });
-//         //create session collection if not exist in db
-//         if(Sessions.find({}).fetch({})=="")
-//         session.insert({
-//             Session_Id:"G1S001",
-//             For:"3 Months",
-//             GroupId:"G001",
-//             facilitator:"F001",
-//             Date:"19-12-2018",
-//             Location:"ABc XXXX",
-//             Status:"Planned",
-//             T_Registered:"20",
-//             T_Attended:""
-//         });
-//         //create admin collection if not exist in db
-//         if(admin.find({}).fetch({})=="")
-//         admin.insert({
-//             Id	: " A001",
-//             LgaId:"LG001",
-//         });
-//         //create facilitator collection if not exist in db
-//         if(facilitator.find({}).fetch({})=="")
-//         facilitator.insert({
-//             Id	: " A001",
-//             No_of_Sessions:"20",
-//             LgaId:"LG001"
-//         });
 
-        
 
-//     });
-// }
+
+
+  
+  

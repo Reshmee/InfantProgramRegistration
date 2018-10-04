@@ -1,0 +1,28 @@
+<template name="sessions_1">
+  <p style="color: #ffffff; background-color:#009688;"> Please Click on the session to make changes </p>
+  <ul class="collapsible" data-collapsible="accordion">
+    {{#each sessions_1}}
+      {{> session_1}}
+    {{/each}}
+  </ul>
+</template>
+
+<template name="session_1">
+  <li>
+    <div class="collapsible-header">
+        Available: {{#if available}} Not Allocated {{else}}  Allocated {{/if}}<br>
+        Facilitator Name: {{returnName tenantID}}
+        
+        {{#if available}}
+          <span class="new badge" data-badge-caption="">{{sessionNumber}}</span>
+        {{else}}
+          <span class="new badge red" data-badge-caption="">{{sessionNumber}}</span>
+        {{/if}} 
+    </div>
+    <div class="collapsible-body">
+      <p style="color: #ffffff; background-color:#009688;"> Change the Session Status </p>
+      {{> quickForm collection="Sessions_1" type="method-update" 
+        doc=this autosave=true id=makeUniqueID meteormethod="updateSession_1"}}
+    </div>
+  </li>
+</template>

@@ -1,0 +1,32 @@
+<template name="emptySessions_1">
+  {{#if currentUser}}
+   <p> Please Click on the session to make changes </p>
+    <ul class="collapsible" data-collapsible="accordion">
+      {{#each emptySessions_1}}
+        {{> emptySession_1}}
+      {{/each}}
+    </ul>
+    {{else}}
+      Welcome to Session Allocation. You need to be logged in first!!!
+    {{/if}}
+  </template>
+  
+  <template name="emptySession_1">
+    <li>
+      <div class="collapsible-header">
+          Available: {{#if available}} Yes {{else}} No {{/if}}<br>
+          Facilitator Name: {{returnName tenantID}}
+        
+          {{#if available}}
+            <span class="new badge" data-badge-caption="">{{sessionNumber}}</span>
+          {{else}}
+            <span class="new badge red" data-badge-caption="">{{sessionNumber}}</span>
+          {{/if}} 
+      </div>
+      <div class="collapsible-body">
+        <h5>Change the Session status</h5>
+        {{> quickForm collection="Sessions_1" type="method-update" 
+        doc=this autosave=true id=makeUniqueID meteormethod="updateSession_1"}}
+      </div>
+    </li>
+  </template>

@@ -1,0 +1,16 @@
+
+<template name="main">
+  <div class="row">
+    {{#if currentUser}}
+      <div class="col s8">
+        {{> facilitators_1}}
+      </div>
+      <div class="col s4">
+        {{> sessions_1}}
+      </div>
+    {{else}}
+      You need to be logged in first!!!
+      {{> atForm}}
+    {{/if}}
+  </div>
+</template>

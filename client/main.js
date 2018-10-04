@@ -24,3 +24,5 @@ import '../imports/ui/LGA/lgaDashboard.js';
 import '../imports/ui/LGA/viewRecords.js';
 import '../imports/ui/LGA/allFacilitators.js';
 import '../imports/ui/LGA/sessionChangeRequest.js';
+import '../imports/ui/Allocations/body.js';
+

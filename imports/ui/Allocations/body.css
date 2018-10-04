@@ -1,0 +1,13 @@
+body > div > div:nth-child(1) > nav > div > a > img {
+  padding-left: 10px !important;
+  padding-top: 5px;
+}
+
+#nav-mobile > li:nth-child(1) > a,
+#nav-mobile > li:nth-child(2) > a,
+#login-name-link {
+  color: #ffffff;
+}
+body {
+  background-color: #c7fef9;
+}

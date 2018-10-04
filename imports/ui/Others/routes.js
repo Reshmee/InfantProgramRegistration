@@ -324,3 +324,71 @@ Router.route('sessionChangeRequest',{
 //   this.render('genSettings');
 // });
 
+//<--------------------Allocations Routes------------------->
+
+
+Router.route('facilitators_1',{
+  templateLayout: 'facilitators_1',
+  path: '/allocations/facilitators_1',
+  template: 'facilitators_1',
+  onBeforeFunction: function(){
+    import '../imports/ui/Allocations/facilitators_1.html';
+    this.next();
+  },
+  action: function(){
+   this.render('facilitators_1');
+  },
+ });
+
+Router.route('main',{
+  templateLayout: 'main',
+  path: '/allocations/main',
+  template: 'main',
+  onBeforeFunction: function(){
+    import '../imports/ui/Allocations/main.html';
+    this.next();
+  },
+  action: function(){
+    this.render('main');
+  },
+});
+
+Router.route('sessions_1',{
+  templateLayout: 'sessions_1',
+  path: '/allocations/sessions_1',
+  template: 'sessions_1',
+  onBeforeFunction: function(){
+    import '../imports/ui/Allocations/sessions_1.html';
+    this.next();
+  },
+  action: function(){
+    this.render('sessions_1');
+  },
+});
+
+
+Router.route('navigation',{
+  templateLayout: 'navigation',
+  path: '/allocations/navigation',
+  template: 'navigation',
+  onBeforeFunction: function(){
+    import '../imports/ui/Allocations/navigation.html';
+    this.next();
+  },
+  action: function(){
+    this.render('navigation');
+  },
+});
+
+Router.route('emptySessions_1',{
+  templateLayout: 'emptySessions_1',
+  path: '/allocations/emptySessions_1',
+  template: 'emptySessions_1',
+  onBeforeFunction: function(){
+    import '../imports/ui/Allocations/emptySessions_1.html';
+    this.next();
+  },
+  action: function(){
+    this.render('emptySessions_1');
+  },
+});
